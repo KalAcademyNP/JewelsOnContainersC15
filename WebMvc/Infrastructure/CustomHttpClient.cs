@@ -1,4 +1,5 @@
-﻿namespace WebMvc.Infrastructure
+﻿using System.Net.Http.Headers;
+namespace WebMvc.Infrastructure
 {
     public class CustomHttpClient : IHttpClient
     {
@@ -11,6 +12,11 @@
             string authorizationToken = null, string authorizationMethod = "Bearer")
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+            if (authorizationToken != null)
+            {
+                requestMessage.Headers.Authorization = new
+                    AuthenticationHeaderValue(authorizationMethod, authorizationToken);
+            }
             var response =  await _httpClient.SendAsync(requestMessage);
             return await response.Content.ReadAsStringAsync();
 
