@@ -45,7 +45,7 @@ services:
       context: .\CartApi
       dockerfile: Dockerfile
     environment:
-      IdentityUrl: http://192.168.1.109:7800
+      IdentityUrl: http://192.168.1.118:7800
       ConnectionString: basket.data
     ports:
       - "7010:80"
@@ -64,7 +64,7 @@ services:
       dockerfile: Dockerfile
     environment:
       CatalogUrl: http://catalog
-      IdentityUrl: http://192.168.1.109:7800
+      IdentityUrl: http://192.168.1.118:7800
       CallbackUrl: http://localhost:7500
       CartUrl: http://cart
     ports:
@@ -94,6 +94,7 @@ services:
     environment:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD: ProductApi123(!)
+      SA_PASSWORD: ProductApi123(!)
     ports:
       - "1449:1433"
     container_name: jewelstokensqlserver
