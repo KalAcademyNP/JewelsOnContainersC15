@@ -72,7 +72,7 @@ namespace OrderApi.Controllers
             try
             {
                 await _ordersContext.SaveChangesAsync();
-               // _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
+                _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
                 return Ok(new { order.OrderId });
             }
             catch (DbUpdateException ex)
